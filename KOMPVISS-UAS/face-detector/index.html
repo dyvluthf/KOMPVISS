@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FaceDetect AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header">
+    <h1 class="header__title">🎯 FaceDetect AI</h1>
+    <div class="header__actions">
+      <span id="face-count" class="face-count">Wajah: 0</span>
+      <button id="btn-api-key" class="btn btn--icon" title="API Key">⚙</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="video-section">
+      <div id="video-container" class="video-container">
+        <video id="video" class="video" width="640" height="480" autoplay muted playsinline></video>
+        <canvas id="overlay" class="overlay"></canvas>
+        <div id="loading-status" class="loading-status">Memuat model...</div>
+      </div>
+
+      <div class="controls">
+        <button id="btn-start" class="btn btn--primary">▶ Mulai</button>
+        <button id="btn-stop" class="btn btn--danger" disabled>⏹ Stop</button>
+        <button id="btn-analyze" class="btn btn--accent" disabled>📸 Analisis Sekarang</button>
+      </div>
+    </section>
+
+    <aside id="result-panel" class="result-panel">
+      <h2 class="panel__title">📋 Hasil Analisis AI</h2>
+
+      <div class="interval-controls">
+        <span class="interval-label">⏱ Auto:</span>
+        <label class="radio-pill">
+          <input type="radio" name="interval" value="3"> 3s
+        </label>
+        <label class="radio-pill">
+          <input type="radio" name="interval" value="5"> 5s
+        </label>
+        <label class="radio-pill">
+          <input type="radio" name="interval" value="0" checked> Manual
+        </label>
+      </div>
+
+      <div id="ai-result" class="ai-result">
+        <p class="ai-result__placeholder">Menunggu analisis...</p>
+      </div>
+
+      <h3 class="panel__subtitle">📜 Riwayat</h3>
+      <div id="history-log" class="history-log"></div>
+    </aside>
+  </main>
+
+  <div id="modal-apikey" class="modal">
+    <div class="modal__content">
+      <h2 class="modal__title">🔑 API Key Claude</h2>
+      <p class="modal__desc">Masukkan Anthropic API Key Anda. Key disimpan di localStorage perangkat ini.</p>
+      <input type="password" id="input-apikey" class="input" placeholder="sk-ant-...">
+      <div class="modal__actions">
+        <button id="btn-save-apikey" class="btn btn--primary">Simpan</button>
+        <button id="btn-close-modal" class="btn btn--ghost">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/camera.js"></script>
+  <script src="js/detector.js"></script>
+  <script src="js/analyzer.js"></script>
+</body>
+</html>
